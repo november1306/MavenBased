@@ -21,7 +21,7 @@ public class MyAccountPage {
     public MyAccountPage checkOnPage() {
         WebElement navigationPanel = driver.findElement(navigationPanelLocator);
         Assertions.assertTrue(navigationPanel.isDisplayed());
-        Assertions.assertEquals("My Account", navigationPanel.getText());
+        Assertions.assertEquals("My account", navigationPanel.getText());
         return this;
     }
 }

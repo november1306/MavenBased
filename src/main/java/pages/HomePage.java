@@ -36,6 +36,7 @@ public class HomePage {
         return this;
     }
 
+
     public HomePage waitOnPage() {
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.pollingEvery(Duration.ofSeconds(3));
