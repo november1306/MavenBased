@@ -14,6 +14,9 @@ public class AuthorizationPage {
     public By passwordInputLocator = By.xpath("//input[@id='passwd']");
     public By navigationPanelLocator = By.cssSelector("span.navigation_page");
 
+    public By emailForCreationInputLocator = By.id("email_create");
+    public By submitCreationButtonLocator = By.id("SubmitCreate");
+
     public AuthorizationPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -33,6 +36,14 @@ public class AuthorizationPage {
         WebElement signInButton = driver.findElement(signInLocator);
         signInButton.click();
         return new MyAccountPage(driver);
+    }
+
+    public CreateAnAccountPage startCreation( String email) {
+        WebElement emailField = driver.findElement(emailForCreationInputLocator);
+        emailField.clear();
+        emailField.sendKeys(email);
+        driver.findElement(submitCreationButtonLocator).click();
+        return new CreateAnAccountPage(driver);
     }
 
     public AuthorizationPage checkOnPage() {

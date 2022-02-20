@@ -22,10 +22,9 @@ public class BaseTest {
         switch (browser) {
             case ("chrome"): {
                 WebDriverManager.chromedriver().setup();
-
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("start-maximized");
-                chromeOptions.addArguments("version");
+                chromeOptions.addArguments("--incognito");
 
                 driver = new ChromeDriver(chromeOptions);
                 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
