@@ -14,6 +14,9 @@ public class AuthorizationPage {
     public By passwordInputLocator = By.xpath("//input[@id='passwd']");
     public By navigationPanelLocator = By.cssSelector("span.navigation_page");
 
+    public By registrationInputLocator = By.id("email_create");
+    public By registrationButtonLocator = By.id("SubmitCreate");
+
     public AuthorizationPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -41,5 +44,14 @@ public class AuthorizationPage {
         Assertions.assertEquals("Authentication", navigationPanel.getText());
         return this;
     }
+
+    public RegistrationPage startRegistration(String email) {
+        WebElement registrationEmailInput = driver.findElement(registrationInputLocator);
+        registrationEmailInput.sendKeys(email);
+        WebElement registrationButton = driver.findElement(registrationButtonLocator);
+        registrationButton.click();
+        return new RegistrationPage(driver);
+    }
+
 
 }
