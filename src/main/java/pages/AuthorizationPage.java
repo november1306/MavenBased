@@ -1,6 +1,5 @@
 package pages;
 
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,6 +15,7 @@ public class AuthorizationPage {
 
     public AuthorizationPage(WebDriver driver) {
         this.driver = driver;
+        checkOnPage();
     }
 
     public AuthorizationPage open() {
@@ -35,11 +35,12 @@ public class AuthorizationPage {
         return new MyAccountPage(driver);
     }
 
-    public AuthorizationPage checkOnPage() {
+    public void checkOnPage() {
         WebElement navigationPanel = driver.findElement(navigationPanelLocator);
-        Assertions.assertTrue(navigationPanel.isDisplayed());
-        Assertions.assertEquals("Authentication", navigationPanel.getText());
-        return this;
+
+        if (!"Authentication".equals(navigationPanel.getText())) {
+            throw new IllegalStateException("This is not the Authorization page");
+        }
     }
 
 }
