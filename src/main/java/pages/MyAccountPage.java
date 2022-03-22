@@ -1,6 +1,5 @@
 package pages;
 
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,16 +11,17 @@ public class MyAccountPage {
 
     public MyAccountPage(WebDriver driver) {
         this.driver = driver;
+        checkOnPage();
     }
 
     public String getAuthorizedAccount() {
         return driver.findElement(accountLocator).getText();
     }
 
-    public MyAccountPage checkOnPage() {
+    public void checkOnPage() {
         WebElement navigationPanel = driver.findElement(navigationPanelLocator);
-        Assertions.assertTrue(navigationPanel.isDisplayed());
-        Assertions.assertEquals("My Account", navigationPanel.getText());
-        return this;
+        if ("My Account".equals(navigationPanel.getText()))
+            throw new IllegalStateException("This is not the MyAccountPage page");
+
     }
 }

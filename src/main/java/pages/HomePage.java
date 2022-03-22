@@ -1,6 +1,5 @@
 package pages;
 
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,11 +17,14 @@ public class HomePage {
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
+        checkOnPage();
     }
 
     public HomePage open() {
         driver.navigate().to(pageURL);
-        return checkOnPage();
+        HomePage homePage = new HomePage(driver);
+        checkOnPage();
+        return homePage;
     }
 
     public AuthorizationPage clickSignIn() {
@@ -30,10 +32,9 @@ public class HomePage {
         return new AuthorizationPage(driver);
     }
 
-    public HomePage checkOnPage() {
-        Assertions.assertEquals("My Store", driver.getTitle(), "This is not Home Page" +
-                " current page is: " + driver.getCurrentUrl());
-        return this;
+    public void checkOnPage() {
+        if (!"My Store".equals(driver.getTitle()))
+            throw new IllegalStateException("This is not the Home page");
     }
 
     public HomePage waitOnPage() {
