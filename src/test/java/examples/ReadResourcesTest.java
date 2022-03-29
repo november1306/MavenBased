@@ -1,6 +1,11 @@
 package examples;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Issue;
+import io.qameta.allure.Step;
 import org.apache.commons.io.IOUtils;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.PropertyReader;
 
@@ -24,6 +29,10 @@ public class ReadResourcesTest {
         assertEquals("chrome", browser);
     }
 
+    @DisplayName("Read properties")
+    @Description("read content of text.txt file")
+    @Epic("jira ticket link")
+    @Issue("JRE-81")
     @Test
     public void readTextFromResourcesTest() {
         String filePath = "attachments/text.txt";
@@ -48,6 +57,7 @@ public class ReadResourcesTest {
 
     @Test
     public void simplifiedResourceRead() {
+        resourceStep();
         String filePath = "attachments/text.txt";
         String text = "";
         try {
@@ -57,6 +67,11 @@ public class ReadResourcesTest {
             ex.printStackTrace();
         }
         assertTrue(text.contains("random text"), text + "is not what we expected");
+    }
+
+    @Step
+    public void resourceStep() {
+        System.out.println("step 1 in simplifiedResourceRead");
     }
 
 
