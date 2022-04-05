@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import utils.PropertyReader;
 
 import java.util.concurrent.TimeUnit;
@@ -15,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
 
     protected WebDriver driver;
+    Logger log = LoggerFactory.getLogger(getClass());
 
     @BeforeEach
     public void initDriver() {
@@ -28,12 +31,14 @@ public class BaseTest {
                 chromeOptions.addArguments("version");
 
                 driver = new ChromeDriver(chromeOptions);
+                log.info("Chromedriver initialized");
                 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
                 break;
             }
             case ("firefox"): {
                 WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
+                log.info("Firefox initialized");
                 break;
             }
             default:

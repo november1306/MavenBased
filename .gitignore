@@ -2,5 +2,6 @@
 /shelf/
 /.idea/
 /target/
-/allure-results/
-/allure-results/history/
+/allure/allure-results/
+/allure/allure-results/history/
+/allure-report/

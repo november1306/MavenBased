@@ -4,6 +4,8 @@ import io.qameta.allure.Allure;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pages.AuthorizationPage;
 import pages.HomePage;
 import pages.MyAccountPage;
@@ -15,6 +17,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 public class AuthorizationTest extends BaseTest {
+
+    Logger log = LoggerFactory.getLogger(AuthorizationTest.class);
 
     @AfterEach
     public void allureAttachScreenshot() {
@@ -28,6 +32,7 @@ public class AuthorizationTest extends BaseTest {
 
     @Test
     public void authorizeTest() {
+        log.info("start AuthorizeTest");
         driver.get(PropertyReader.BASEURL);
         HomePage homePage = new HomePage(driver).waitOnPage();
         AuthorizationPage authorizationPage = homePage.clickSignIn();
