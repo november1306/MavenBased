@@ -16,6 +16,7 @@ public class ShopBasePage {
     By signIn = By.className("login");
     By signOut = By.className("logout");
     By account = By.cssSelector("a.account span");
+    By contactUs = By.id("contact-link");
     By shoopingCart = By.className("shopping_cart");
 
     public ShopBasePage(WebDriver driver) {
@@ -36,7 +37,7 @@ public class ShopBasePage {
         wait.pollingEvery(Duration.ofSeconds(3));
         wait.ignoring(NoSuchElementException.class);
 
-        wait.until(ExpectedConditions.elementToBeClickable(signIn));
+        wait.until(ExpectedConditions.elementToBeClickable(contactUs));
         return this;
     }
 }

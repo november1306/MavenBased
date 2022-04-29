@@ -8,16 +8,13 @@ import java.util.List;
 import java.util.Set;
 
 public class MyAccountPage extends ShopBasePage {
-//    private final WebDriver driver;
-     By accountLocator = By.cssSelector("a.account span");
-     By navigationPanelLocator = By.cssSelector("span.navigation_page");
-     By signInLocator = By.id("SubmitLogin");
+
+    By navigationPanelLocator = By.cssSelector("span.navigation_page");
 
     public MyAccountPage(WebDriver driver) {
         super(driver);
         checkOnPage();
     }
-
 
 
     public void checkOnPage() {
