@@ -4,19 +4,21 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class MyAccountPage {
-    private final WebDriver driver;
-    public By accountLocator = By.cssSelector("a.account span");
-    public By navigationPanelLocator = By.cssSelector("span.navigation_page");
+import java.util.List;
+import java.util.Set;
+
+public class MyAccountPage extends ShopBasePage {
+//    private final WebDriver driver;
+     By accountLocator = By.cssSelector("a.account span");
+     By navigationPanelLocator = By.cssSelector("span.navigation_page");
+     By signInLocator = By.id("SubmitLogin");
 
     public MyAccountPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         checkOnPage();
     }
 
-    public String getAuthorizedAccount() {
-        return driver.findElement(accountLocator).getText();
-    }
+
 
     public void checkOnPage() {
         WebElement navigationPanel = driver.findElement(navigationPanelLocator);

@@ -7,6 +7,7 @@ import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,6 +44,7 @@ public class RestTest {
     @Test
     void get_users_no_auth() {
         log.info("check list of users without authorization");
+         given().when().get("https://gorest.co.in/public/v2");
         given()
                 .when()
                 .get("/users")
@@ -98,7 +100,7 @@ public class RestTest {
     @Test
     void post_user_from_file() throws IOException {
         log.info("create user with POST from json file");
-        String fileContent = Files.readString(Path.of("src/test/java/api/PostUser.json"));
+        String fileContent = Files.readString(Path.of("src/test/java/api/User.json"));
 
         int newUserID = given()
                 .auth().oauth2(TOKEN)
