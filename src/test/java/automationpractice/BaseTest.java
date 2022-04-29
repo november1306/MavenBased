@@ -32,7 +32,7 @@ public class BaseTest {
 
                 driver = new ChromeDriver(chromeOptions);
                 log.info("Chromedriver initialized");
-                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 break;
             }
             case ("firefox"): {

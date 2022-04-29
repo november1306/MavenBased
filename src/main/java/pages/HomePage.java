@@ -12,11 +12,12 @@ import java.util.NoSuchElementException;
 public class HomePage {
     private final WebDriver driver;
     private final String pageURL = PropertyReader.BASEURL;
+    public HeaderWidget headerWidget;
 
-    private final By signInButton = By.className("login");
-
-    public HomePage(WebDriver driver) {
+    public  HomePage(WebDriver driver) {
         this.driver = driver;
+        headerWidget = new HeaderWidget(driver);
+
         checkOnPage();
     }
 
@@ -27,10 +28,6 @@ public class HomePage {
         return homePage;
     }
 
-    public AuthorizationPage clickSignIn() {
-        driver.findElement(signInButton).click();
-        return new AuthorizationPage(driver);
-    }
 
     public void checkOnPage() {
         if (!"My Store".equals(driver.getTitle()))
@@ -38,12 +35,11 @@ public class HomePage {
     }
 
     public HomePage waitOnPage() {
-        WebDriverWait wait = new WebDriverWait(driver, 20);
+        WebDriverWait wait = new WebDriverWait(driver, 15);
         wait.pollingEvery(Duration.ofSeconds(3));
-        wait.withTimeout(Duration.ofSeconds(30));
         wait.ignoring(NoSuchElementException.class);
 
-        wait.until(ExpectedConditions.elementToBeClickable(signInButton));
+        wait.until(ExpectedConditions.elementToBeClickable(headerWidget.signInButton));
         return this;
     }
 
