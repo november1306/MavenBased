@@ -10,9 +10,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.JSONObject;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,7 +40,8 @@ public class RestTest {
     }
 
     @Test
-    void get_users_no_auth() {
+    void get_users_no_auth(TestReporter testReporter) {
+        testReporter.publishEntry("some strange reporter");
         log.info("check list of users without authorization");
          given().when().get("https://gorest.co.in/public/v2");
         given()
@@ -54,6 +53,7 @@ public class RestTest {
     }
 
     @Test
+    @Tag("smoke")
     void get_user_with_auth() {
         log.info("check single user with bearer authorization");
         RequestSpecification getUsersSpec = new RequestSpecBuilder()
@@ -98,9 +98,10 @@ public class RestTest {
     }
 
     @Test
+    @Tag("smoke")
     void post_user_from_file() throws IOException {
         log.info("create user with POST from json file");
-        String fileContent = Files.readString(Path.of("src/test/java/api/User.json"));
+        String fileContent = Files.readString(Path.of("src/main/java/api/json/User.json"));
 
         int newUserID = given()
                 .auth().oauth2(TOKEN)
@@ -119,6 +120,7 @@ public class RestTest {
     }
 
     @Test
+    @Tag("smoke")
     void post_user_from_object() {
         User user = new User();
 
