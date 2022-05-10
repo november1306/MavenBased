@@ -1,19 +1,14 @@
 package automationpractice;
 
 import io.qameta.allure.Allure;
-import io.restassured.http.Cookies;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.AuthorizationPage;
-import pages.HeaderWidget;
 import pages.HomePage;
 import pages.MyAccountPage;
 import utils.JSONUtils;
@@ -23,9 +18,6 @@ import utils.WebDriverUtils;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.*;
-
-import static io.restassured.RestAssured.when;
 
 public class AuthorizationTest extends BaseTest {
 
@@ -46,7 +38,7 @@ public class AuthorizationTest extends BaseTest {
         log.info("start AuthorizeTest");
         driver.get(PropertyReader.BASEURL);
         HomePage homePage = new HomePage(driver).waitOnPage();
-        AuthorizationPage authorizationPage = homePage.headerWidget.clickSignIn();
+        AuthorizationPage authorizationPage = homePage.clickSignIn();
 
         MyAccountPage myAccountPage = authorizationPage.doAuthorize("skillupdemo@gmail.com", "12345");
         String account = myAccountPage.getAuthorizedAccount();
@@ -67,8 +59,8 @@ public class AuthorizationTest extends BaseTest {
         driver.manage().addCookie(cookie);
 
         driver.navigate().refresh();
-        String username = homePage.headerWidget.getAuthorizedAccount();
+        String username = homePage.getAuthorizedAccount();
 
-        Assertions.assertEquals( "name lasr", username,"user wa not logged in");
+        Assertions.assertEquals("name lasr", username, "user wa not logged in");
     }
 }

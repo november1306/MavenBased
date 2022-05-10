@@ -24,6 +24,11 @@ public class ShopBasePage {
         waitOnPage();
     }
 
+    public AuthorizationPage clickSignIn() {
+        driver.findElement(signIn).click();
+        return new AuthorizationPage(driver);
+    }
+
     public String getAuthorizedAccount() {
         return driver.findElement(account).getText();
     }

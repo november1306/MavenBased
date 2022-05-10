@@ -9,23 +9,18 @@ import utils.PropertyReader;
 import java.time.Duration;
 import java.util.NoSuchElementException;
 
-public class HomePage {
-    private final WebDriver driver;
-    private final String pageURL = PropertyReader.BASEURL;
-    public HeaderWidget headerWidget;
+public class HomePage extends ShopBasePage {
+    private static final String pageURL = PropertyReader.BASEURL;
 
-    public  HomePage(WebDriver driver) {
-        this.driver = driver;
-        headerWidget = new HeaderWidget(driver);
 
+    public HomePage(WebDriver driver) {
+        super(driver);
         checkOnPage();
     }
 
-    public HomePage open() {
+    public static HomePage open(WebDriver driver) {
         driver.navigate().to(pageURL);
-        HomePage homePage = new HomePage(driver);
-        checkOnPage();
-        return homePage;
+        return new HomePage(driver);
     }
 
 
@@ -39,7 +34,7 @@ public class HomePage {
         wait.pollingEvery(Duration.ofSeconds(3));
         wait.ignoring(NoSuchElementException.class);
 
-        wait.until(ExpectedConditions.elementToBeClickable(headerWidget.signInButton));
+        wait.until(ExpectedConditions.elementToBeClickable(contactUs));
         return this;
     }
 
