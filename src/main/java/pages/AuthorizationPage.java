@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class AuthorizationPage extends ShopBasePage {
+public class AuthorizationPage extends BaseShopPage {
     private final String pageURL = "http://automationpractice.com/index.php?controller=authentication";
 
      By signInButton = By.id("SubmitLogin");

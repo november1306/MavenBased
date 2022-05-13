@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -9,7 +8,7 @@ import utils.PropertyReader;
 import java.time.Duration;
 import java.util.NoSuchElementException;
 
-public class HomePage extends ShopBasePage {
+public class HomePage extends BaseShopPage {
     private static final String pageURL = PropertyReader.BASEURL;
 
 

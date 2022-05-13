@@ -4,10 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.List;
-import java.util.Set;
-
-public class MyAccountPage extends ShopBasePage {
+public class MyAccountPage extends BaseShopPage {
 
     By navigationPanelLocator = By.cssSelector("span.navigation_page");
 

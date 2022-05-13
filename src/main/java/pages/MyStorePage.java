@@ -6,10 +6,12 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class MyStorePage extends ShopBasePage {
+public class MyStorePage extends BaseShopPage {
     By shopItem = By.xpath("//div[@class='product-container']");
-    //By.className("product-container");
-    //  By.cssSelector(".product_list .product-container");
+    By girly = By.cssSelector("input.checkbox#layered_id_feature_13");
+    By productName = By.cssSelector(".product-name");
+    String dress = "a.product-name[title*='%s']";
+
 
     public MyStorePage(WebDriver driver) {
         super(driver);
@@ -21,4 +23,25 @@ public class MyStorePage extends ShopBasePage {
     }
 
 
+    public MyStorePage enableGirlyCheckbox() {
+        WebElement girlyCheckbox = driver.findElement(girly);
+        if (!girlyCheckbox.isSelected()) {
+            girlyCheckbox.click();
+        }
+        return this;
+    }
+
+    public ProductDetailsPage viewDressDetails(int itemIndex) {
+        List<WebElement> shopItems = getShopItems();
+        shopItems.get(itemIndex)
+                .findElement(productName)
+                .click();
+        return new ProductDetailsPage(driver);
+    }
+
+    public ProductDetailsPage viewDressDetails(String itemTitle) {
+        By dressItemLocator = By.cssSelector(String.format(dress, itemTitle));
+        driver.findElement(dressItemLocator).click();
+        return new ProductDetailsPage(driver);
+    }
 }
