@@ -10,7 +10,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class ShopBasePage {
+public class BaseShopPage {
     protected WebDriver driver;
 
     By signIn = By.className("login");
@@ -19,9 +19,14 @@ public class ShopBasePage {
     By contactUs = By.id("contact-link");
     By shoopingCart = By.className("shopping_cart");
 
-    public ShopBasePage(WebDriver driver) {
+    public BaseShopPage(WebDriver driver) {
         this.driver = driver;
         waitOnPage();
+    }
+
+    public AuthorizationPage clickSignIn() {
+        driver.findElement(signIn).click();
+        return new AuthorizationPage(driver);
     }
 
     public String getAuthorizedAccount() {
@@ -32,7 +37,7 @@ public class ShopBasePage {
         return logIn.isEmpty();
     }
 
-    public ShopBasePage waitOnPage() {
+    public BaseShopPage waitOnPage() {
         WebDriverWait wait = new WebDriverWait(driver, 15);
         wait.pollingEvery(Duration.ofSeconds(3));
         wait.ignoring(NoSuchElementException.class);
