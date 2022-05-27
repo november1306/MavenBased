@@ -52,6 +52,7 @@ public class AuthorizationTest extends BaseTest {
     @Test
     @Tag("selenium")
     public void sneakyAuthorize() throws IOException {
+        log.info("start sneaky auth test");
         driver.get(PropertyReader.BASEURL);
         HomePage homePage = new HomePage(driver).waitOnPage();
         driver.manage().deleteAllCookies();
