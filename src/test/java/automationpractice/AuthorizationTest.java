@@ -1,6 +1,7 @@
 package automationpractice;
 
 import io.qameta.allure.Allure;
+import io.qameta.allure.Description;
 import org.json.JSONObject;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -36,6 +37,7 @@ public class AuthorizationTest extends BaseTest {
 
     @Test
     @Tag("selenium")
+    @Description("authorize user")
     public void authorizeTest() {
         log.info("start AuthorizeTest");
         driver.get(PropertyReader.BASEURL);
