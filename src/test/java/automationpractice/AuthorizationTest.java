@@ -4,6 +4,7 @@ import io.qameta.allure.Allure;
 import org.json.JSONObject;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
 import org.slf4j.Logger;
@@ -34,6 +35,7 @@ public class AuthorizationTest extends BaseTest {
     }
 
     @Test
+    @Tag("selenium")
     public void authorizeTest() {
         log.info("start AuthorizeTest");
         driver.get(PropertyReader.BASEURL);
@@ -46,6 +48,7 @@ public class AuthorizationTest extends BaseTest {
     }
 
     @Test
+    @Tag("selenium")
     public void sneakyAuthorize() throws IOException {
         driver.get(PropertyReader.BASEURL);
         HomePage homePage = new HomePage(driver).waitOnPage();

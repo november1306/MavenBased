@@ -2,6 +2,7 @@ package automationpractice;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ public class ReviewTest extends BaseTest {
     Logger log = LoggerFactory.getLogger(ReviewTest.class);
 
     @Test
+    @Tag("selenium")
     @DisplayName("write item review")
     void leaveAComment() {
         log.info("start leave_a_comment_test");

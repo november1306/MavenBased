@@ -6,10 +6,10 @@ import org.junit.platform.suite.api.*;
 @Suite
 @SuiteDisplayName("JUnit Platform Suite Demo")
 
-@SelectClasses({RestTest.class, StarWarsApiTest.class})
-@IncludeTags({"smoke", "selenium"})
+//@SelectClasses({RestTest.class, StarWarsApiTest.class})
+//@IncludeTags("selenium")
 //@IncludeClassNamePatterns(".*Tests")
-//@SelectPackages("examples")
+@SelectPackages("automationpractice")
 
 public class SuitTest {
 }
