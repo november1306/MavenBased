@@ -7,7 +7,6 @@ import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.JSONObject;
 import org.junit.jupiter.api.*;
@@ -43,7 +42,7 @@ public class RestTest {
     void get_users_no_auth(TestReporter testReporter) {
         testReporter.publishEntry("some strange reporter");
         log.info("check list of users without authorization");
-         given().when().get("https://gorest.co.in/public/v2");
+        given().when().get("https://gorest.co.in/public/v2");
         given()
                 .when()
                 .get("/users")
@@ -202,6 +201,12 @@ public class RestTest {
                         .extract()
                         .as(new TypeRef<List<Map<String, Object>>>() {
                         });
+
+        String sb = new StringBuilder()
+                .append("sdfs")
+                .append("ssdf")
+                .append("sdf")
+                .toString();
 
         log.debug("size: " + responseBody.size());
         log.info(responseBody.toString());

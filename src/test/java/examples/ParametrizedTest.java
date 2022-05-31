@@ -35,6 +35,7 @@ public class ParametrizedTest {
         String paramBrowser = System.getProperty("browser");
         System.out.println("console browser = " + paramBrowser);
         assertEquals(propBrowser, paramBrowser);
+
     }
 
     @ParameterizedTest
